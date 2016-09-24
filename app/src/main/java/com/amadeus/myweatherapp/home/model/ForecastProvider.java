@@ -1,6 +1,4 @@
-package com.amadeus.myweatherapp;
-
-import android.util.Log;
+package com.amadeus.myweatherapp.home.model;
 
 import java.util.ArrayList;
 

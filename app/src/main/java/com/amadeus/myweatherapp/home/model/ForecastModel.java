@@ -1,4 +1,4 @@
-package com.amadeus.myweatherapp;
+package com.amadeus.myweatherapp.home.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
