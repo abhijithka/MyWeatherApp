@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="forecastListView" type="id">forecastListView</item>
+    <item name="forecastImageView" type="id">forecastImageView</item>
+    <item name="topMenu" type="id">topMenu</item>
+    <item name="forecastDayTexView" type="id">forecastDayTexView</item>
+    <item name="temperatureTextView" type="id">temperatureTextView</item>
+    <item name="weatherTextView" type="id">weatherTextView</item>
+</resources>

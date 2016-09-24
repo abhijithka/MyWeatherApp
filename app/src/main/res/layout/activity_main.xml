@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.amadeus.myweatherapp.MainActivity">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:id="@id/topMenu"
+        android:background="@color/topBg"
+        android:layout_height="40dp">
+
+        <TextView
+            android:layout_weight="3.5"
+            android:layout_width="0dp"
+            android:text="WeatherNow"
+            android:gravity="center"
+            android:textSize="32dp"
+            android:textColor="@android:color/holo_blue_dark"
+            android:layout_height="match_parent" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="Refresh"
+            android:background="@android:color/holo_green_light"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <ListView
+        android:layout_width="match_parent"
+        android:id="@id/forecastListView"
+        android:layout_below="@id/topMenu"
+        android:layout_height="wrap_content">
+
+    </ListView>
+</RelativeLayout>
