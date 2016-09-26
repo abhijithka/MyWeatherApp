@@ -6,4 +6,8 @@
     <item name="forecastDayTexView" type="id">forecastDayTexView</item>
     <item name="temperatureTextView" type="id">temperatureTextView</item>
     <item name="weatherTextView" type="id">weatherTextView</item>
+    <item name="titleTextView" type="id">titleTextView</item>
+    <item name="dateTextView" type="id">dateTextView</item>
+    <item name="weatherTypeTextView" type="id">weatherTypeTextView</item>
+    <item name="tempTextView" type="id">tempTextView</item>
 </resources>

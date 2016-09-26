@@ -53,7 +53,8 @@ public class GetForecastsParser extends AsyncTask<Void, Void, ArrayList<Forecast
 
     public void getForecasts() {
         loader = new AsyncLoader(AsyncLoader.GET, AsyncLoader.OUTPUT_TEXT);
-        loader.executeRequest("http://openweathermap.org/data/2.5/forecast/daily?lat=35&lon=139&cnt=7&mode=json&appid=b1b15e88fa797225412429c1c50c122a1");
+        loader.executeRequest("http://api.openweathermap.org/data/2.5/forecast/daily?id=1277333&mode=json&units=metric&cnt=7&APPID=9e6eea1e850eb62ec6e176bfd57267fe");
+        //loader.executeRequest("http://api.openweathermap.org/data/2.5/forecast/daily?id=580597&mode=json&units=metric&cnt=7&APPID=9e6eea1e850eb62ec6e176bfd57267fe");
         loader.setListener(this);
     }
 
@@ -76,12 +77,13 @@ public class GetForecastsParser extends AsyncTask<Void, Void, ArrayList<Forecast
                     JSONObject temperatureObject = dataObject.getJSONObject("temp");
                     JSONObject weatherObject = dataObject.getJSONArray("weather").getJSONObject(0);
                     Long timestamp = Long.parseLong(dataObject.getString("dt"));
-                    Date d = new Date(timestamp);
+                    Date d = new Date(timestamp*1000L);
 
                     ForecastModel forecastModel = new ForecastModel();
 
                     //forecastModel.day = dataObject.getString("");
-                    forecastModel.day = d.toString().substring(0,10);
+                    String date = d.toString() ;
+                    forecastModel.day = date.substring(0,3)+ ",  " + date.substring(4,10) ;
                     forecastModel.temperature = temperatureObject.getString("min")+ "\u00b0C / "+temperatureObject.getString("max")+"°C";
                     forecastModel.weather = weatherObject.getString("main");
 

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_weather_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.amadeus.myweatherapp.home.model.WeatherDetailActivity">
+
+    <TextView
+        android:background="@color/topBg"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:text="WeatherNow"
+        android:gravity="center"
+        android:textSize="32dp"
+        android:textColor="@color/titleColor"
+        android:textStyle="bold"
+        android:fontFamily="serif"
+        android:id="@id/titleTextView"
+        android:layout_height="0dp" />
+
+    <TextView
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:textSize="32sp"
+        android:id="@id/dateTextView"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:textColor="@android:color/holo_blue_bright"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:id="@id/weatherTypeTextView"
+        />
+
+    <TextView
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:id="@id/tempTextView"
+        style="bold"/>
+
+</LinearLayout>
