@@ -10,4 +10,6 @@
     <item name="dateTextView" type="id">dateTextView</item>
     <item name="weatherTypeTextView" type="id">weatherTypeTextView</item>
     <item name="tempTextView" type="id">tempTextView</item>
+    <item name="action_settings" type="id">action_settings</item>
+    <item name="action_refresh" type="id">action_refresh</item>
 </resources>

@@ -88,6 +88,7 @@ public class AsyncLoader extends AsyncTask <String,Void,byte[]> {
             Log.e("MalformedURLException", "e " + e);
         }
 
+        Log.e("AsyncLoader", "Refreshing");
         execute(requestURL);
 
     }

@@ -1,10 +1,15 @@
 package com.amadeus.myweatherapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -13,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.amadeus.myweatherapp.home.SettingsActivity;
 import com.amadeus.myweatherapp.home.model.AsyncLoader;
 import com.amadeus.myweatherapp.home.model.ForecastModel;
 import com.amadeus.myweatherapp.home.model.ForecastProvider;
@@ -26,28 +32,60 @@ public class MainActivity extends AppCompatActivity implements GetForecastsParse
 
     ArrayList<ForecastModel> forecasts;
     GetForecastsParser parser;
-    TextView titleTextView;
+    MenuItem settingsItem;
+    String cityId;
+    int temp_unit; // 0 for celsius and 1 for fahrenheit
+    SharedPreferences preferences;
+    //TextView titleTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getSupportActionBar().hide();
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        getWeather();
+        //getSupportActionBar().hide();
 
         //ForecastProvider forecastProvider = new ForecastProvider();
         //forecasts = forecastProvider.getForecasts();
 
         //Log.e("MainActivity", ""+forecasts.size());
+
+
+        //titleTextView = (TextView) findViewById(R.id.titleTextView);
+        //titleTextView.setOnClickListener(this);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.action_refresh) {
+            getWeather();
+        }
+        else if (item.getItemId() == R.id.action_settings) {
+            startActivity(new Intent(this, SettingsActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void getWeather() {
         parser = new GetForecastsParser();
-        parser.getForecasts();
+        cityId = preferences.getString("location", getString(R.string.pref_location));
+        temp_unit = Integer.parseInt(preferences.getString("units_list", getString(R.string.pref_title_unit)));
+        //Log.e("Temperature", temp_unit+"");
+        //Log.e("MainActivity", "City Id : "+cityId);
+        parser.getForecasts(cityId, temp_unit);
         parser.setListener(this);
+    }
 
-        titleTextView = (TextView) findViewById(R.id.titleTextView);
-        titleTextView.setOnClickListener(this);
-
-
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
     }
 
     @Override
@@ -65,11 +103,10 @@ public class MainActivity extends AppCompatActivity implements GetForecastsParse
         Log.e("MainActivity", "didReceivedError");
     }
 
+    // This onclick listener can be removed now as there is a separate refresh button
     @Override
     public void onClick(View v) {
-        parser = new GetForecastsParser();
-        parser.getForecasts();
-        parser.setListener(this);
+        getWeather();
     }
 
     @Override
@@ -145,6 +182,8 @@ public class MainActivity extends AppCompatActivity implements GetForecastsParse
             }
             else if (forecast.weather.equals("Clear")){
                 viewHolder.forecastImageView.setBackgroundResource(R.drawable.sun);
+            }else if (forecast.weather.equals("Clouds")){
+                viewHolder.forecastImageView.setBackgroundResource(R.drawable.clouds);
             }
 
             return convertView;

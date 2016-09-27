@@ -6,29 +6,10 @@
     android:layout_height="match_parent"
     tools:context="com.amadeus.myweatherapp.MainActivity">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:id="@id/topMenu"
-        android:background="@color/topBg"
-        android:layout_height="80dp">
 
-        <TextView
-            android:layout_weight="3.5"
-            android:layout_width="0dp"
-            android:text="WeatherNow"
-            android:gravity="center"
-            android:textSize="32dp"
-            android:textColor="@color/titleColor"
-            android:textStyle="bold"
-            android:fontFamily="serif"
-            android:id="@id/titleTextView"
-            android:layout_height="match_parent" />
-    </LinearLayout>
     <ListView
         android:layout_width="match_parent"
         android:id="@id/forecastListView"
-        android:layout_below="@id/topMenu"
         android:layout_height="wrap_content">
 
     </ListView>
