@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:myweatherapp="http://schemas.android.com/apk/res-auto"
+    tools:context="com.amadeus.myweatherapp.home.model.WeatherDetailActivity"
+    android:id="@id/topMenu">
+    <item
+        android:id="@id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        />
+    <item
+        android:id="@id/action_refresh"
+        android:title="@string/action_refresh"
+        android:icon="@drawable/ic_menu_refresh"
+        myweatherapp:showAsAction="ifRoom"/>
+    <item
+        android:id="@id/action_map"
+        android:title="@string/action_map"
+        myweatherapp:showAsAction="never" />
+
+    <item
+        android:id="@id/action_share"
+        android:title="@string/action_share"
+        myweatherapp:actionProviderClass="android.support.v7.widget.ShareActionProvider"
+        myweatherapp:showAsAction="always"/>
+
+
+
+</menu>

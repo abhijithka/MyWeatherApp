@@ -11,6 +11,7 @@ public class ForecastModel implements Parcelable {
     public String day;
     public String weather;
     public String temperature;
+    public String wind;
 
     public ForecastModel() {
 
@@ -20,6 +21,7 @@ public class ForecastModel implements Parcelable {
         day = in.readString();
         weather = in.readString();
         temperature = in.readString();
+        wind = in.readString();
     }
 
     public static final Creator<ForecastModel> CREATOR = new Creator<ForecastModel>() {
@@ -44,5 +46,6 @@ public class ForecastModel implements Parcelable {
         dest.writeString(day);
         dest.writeString(weather);
         dest.writeString(temperature);
+        dest.writeString(wind);
     }
 }

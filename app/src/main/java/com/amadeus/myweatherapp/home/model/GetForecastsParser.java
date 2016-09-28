@@ -141,6 +141,7 @@ public class GetForecastsParser extends AsyncTask<String, Void, ArrayList<Foreca
                         forecastModel.temperature = temperatureObject.getString("min") + "F / " + temperatureObject.getString("max") + "F";
                     }
                     forecastModel.weather = weatherObject.getString("main");
+                    forecastModel.wind = dataObject.getString("speed");
 
                     forecasts.add(forecastModel);
                 }

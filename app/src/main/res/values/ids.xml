@@ -12,4 +12,7 @@
     <item name="tempTextView" type="id">tempTextView</item>
     <item name="action_settings" type="id">action_settings</item>
     <item name="action_refresh" type="id">action_refresh</item>
+    <item name="action_map" type="id">action_map</item>
+    <item name="windTextView" type="id">windTextView</item>
+    <item name="action_share" type="id">action_share</item>
 </resources>

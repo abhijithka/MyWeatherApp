@@ -76,4 +76,6 @@
     <string name="pref_title_pref_location">Set Location</string>
     <string name="pref_default_display_name">John Smith</string>
     <string name="pref_title_unit">Temperature Unit</string>
+    <string name="action_map">Map Location</string>
+    <string name="action_share">Share</string>
 </resources>

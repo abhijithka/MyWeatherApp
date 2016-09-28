@@ -15,5 +15,9 @@
             android:title="@string/action_refresh"
             android:icon="@drawable/ic_menu_refresh"
             myweatherapp:showAsAction="ifRoom"/>
+        <item
+                android:id="@id/action_map"
+                android:title="@string/action_map"
+                myweatherapp:showAsAction="never" />
 
 </menu>

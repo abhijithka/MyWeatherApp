@@ -2,6 +2,7 @@ package com.amadeus.myweatherapp;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements GetForecastsParse
     String cityId;
     int temp_unit; // 0 for celsius and 1 for fahrenheit
     SharedPreferences preferences;
+    String TAG = MainActivity.class.getSimpleName();
     //TextView titleTextView;
 
     @Override
@@ -43,8 +45,6 @@ public class MainActivity extends AppCompatActivity implements GetForecastsParse
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        getWeather();
         //getSupportActionBar().hide();
 
         //ForecastProvider forecastProvider = new ForecastProvider();
@@ -59,6 +59,13 @@ public class MainActivity extends AppCompatActivity implements GetForecastsParse
     }
 
     @Override
+    protected void onResume() {
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        getWeather();
+        super.onResume();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.action_refresh) {
@@ -68,7 +75,28 @@ public class MainActivity extends AppCompatActivity implements GetForecastsParse
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
+        else if (item.getItemId() == R.id.action_map) {
+            openLocationInMap();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void openLocationInMap() {
+        cityId = preferences.getString("location", getString(R.string.pref_location));
+        Uri geoLocation = Uri.parse("geo:0,0?").buildUpon()
+                 .appendQueryParameter("q", cityId)
+                 .build();
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(geoLocation);
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+        else {
+                 Log.e(TAG, "Couldn't call " + cityId + ", no receiving apps installed!");
+             }
     }
 
     private void getWeather() {
@@ -184,6 +212,8 @@ public class MainActivity extends AppCompatActivity implements GetForecastsParse
                 viewHolder.forecastImageView.setBackgroundResource(R.drawable.sun);
             }else if (forecast.weather.equals("Clouds")){
                 viewHolder.forecastImageView.setBackgroundResource(R.drawable.clouds);
+            }else if (forecast.weather.equals("Snow")) {
+                viewHolder.forecastImageView.setBackgroundResource(R.drawable.snow);
             }
 
             return convertView;
